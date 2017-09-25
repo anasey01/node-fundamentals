@@ -1,8 +1,10 @@
-let fs = require('fs')
+let http = require('http')
 
-//Asynchonous method to read files.
-let readMe = fs.readFileSync('readMe.txt', 'utf8');
-console.log(readMe);
+let server = http.createServer(function(req, res){
+    console.log(req.url);
+res.writeHead(200, {'Content-Type': 'text/plain'});
+res.end('Hey Dude! Server Started!')
+});
 
-//Asynchonous method to write files.
-fs.writeFileSync('writeMe.text', readMe);
+server.listen(3000, '127.0.0.1');
+console.log('server now lisneing at port 3000');
